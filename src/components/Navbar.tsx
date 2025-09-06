@@ -1,47 +1,45 @@
 'use client'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { supabaseBrowser } from '@/lib/supabase/browser'
 
 export default function Navbar() {
-  const supabase = supabaseBrowser() // ← instancia del cliente
+  const supabase = supabaseBrowser()
+  const pathname = usePathname()
+  const [ready, setReady] = useState(false)
   const [logged, setLogged] = useState(false)
 
   useEffect(() => {
-    // sesión inicial
-    supabase.auth.getSession().then(({ data }) => setLogged(!!data.session))
-    // suscripción a cambios de auth
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => {
-      setLogged(!!s)
-    })
-    return () => {
-      sub?.subscription.unsubscribe()
-    }
+    let unsub: { unsubscribe: () => void } | undefined
+    ;(async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      setLogged(!!session)
+      setReady(true)
+      const { data } = supabase.auth.onAuthStateChange((_e, s) => setLogged(!!s))
+      unsub = data.subscription
+    })()
+    return () => unsub?.unsubscribe()
   }, [supabase])
 
-  const onSignOut = async () => {
-    await supabase.auth.signOut()
-  }
+  const signOut = async () => { await supabase.auth.signOut() }
+
+  // No mostramos menú en /login
+  const hideMenu = pathname?.startsWith('/login')
 
   return (
     <nav className="border-b bg-white">
       <div className="container h-14 flex items-center justify-between">
         <Link href="/" className="font-semibold">ConsultaDoc</Link>
 
-        <div className="flex items-center gap-3">
-          {logged ? (
-            <>
-              <Link className="hover:underline" href="/dashboard">Dashboard</Link>
-              <Link className="hover:underline" href="/dashboard/agenda">Agenda</Link>
-              <button className="btn" onClick={onSignOut}>Salir</button>
-            </>
-          ) : (
-            <>
-              <Link className="hover:underline" href="/dashboard/agenda">Agenda</Link>
-              <Link className="btn" href="/login">Ingresar</Link>
-            </>
-          )}
-        </div>
+        {ready && !hideMenu && logged && (
+          <div className="flex items-center gap-3">
+            <Link className="hover:underline" href="/dashboard">Dashboard</Link>
+            <Link className="hover:underline" href="/dashboard/agenda">Agenda</Link>
+            <Link className="hover:underline" href="/dashboard/especialidades">Especialidades</Link>
+            <button className="btn" onClick={signOut}>Salir</button>
+          </div>
+        )}
       </div>
     </nav>
   )
