@@ -1,6 +1,13 @@
 # ConsultaDoc
 
-SaaS para gestión de consultas médicas. Stack: Next.js + Supabase.
+ConsultaDoc es un SaaS para la gestión integral de consultas médicas. Permite a clínicas y profesionales de la salud administrar pacientes, programar citas y mantener el seguimiento de los historiales médicos. La aplicación está construida con Next.js en el frontend y utiliza Supabase como backend y base de datos.
+
+## Características esenciales
+
+- Gestión de pacientes y historiales
+- Programación de citas médicas
+- Autenticación y control de acceso
+- Integración con Supabase para almacenamiento y datos en tiempo real
 
 ## Setup rápido
 
