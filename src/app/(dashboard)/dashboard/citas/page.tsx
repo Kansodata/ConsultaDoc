@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
+import Link from "next/link";
 
 type Cita = { id: string; fecha: string; estado: string; motivo: string };
 
@@ -24,9 +25,9 @@ export default function CitasPage() {
     <div className="card p-6">
       <div className="flex items-center justify-between flex-wrap gap-2">
         <h2 className="text-xl font-semibold">Citas</h2>
-        <a href="/dashboard/citas/nueva" className="btn">
+        <Link href="/dashboard/citas/nueva" className="btn">
           Nueva cita
-        </a>
+        </Link>
       </div>
       <div className="mt-4 overflow-x-auto">
         <table className="min-w-full text-sm">
