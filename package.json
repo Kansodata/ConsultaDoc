@@ -1,4 +1,3 @@
-{"name":"consultadoc","version":"0.1.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint","typecheck":"tsc --noEmit","format":"prettier --write ."},"dependencies":{"@supabase/auth-helpers-nextjs":"^0.10.0","@supabase/supabase-js":"^2.45.4","next":"^14.2.5","react":"^18.3.1","react-dom":"^18.3.1","zustand":"^4.5.5"},"devDependencies":{"@types/node":"^20.11.30","@types/react":"^18.2.66","@types/react-dom":"^18.2.22","autoprefixer":"^10.4.17","postcss":"^8.4.35","prettier":"^3.2.5","tailwindcss":"^3.4.3","typescript":"^5.4.5"}}
 {
   "name": "consultadoc",
   "version": "0.1.0",
@@ -9,23 +8,28 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "db:login": "supabase login",
+    "db:link": "supabase link --project-ref <TU_PROJECT_REF>",
+    "db:dump": "supabase db dump -f supabase/schema.sql --schema public,storage",
+    "db:diff": "supabase db diff",
+    "db:reset": "supabase db reset"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.4",
-    "next": "^14.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "zustand": "^4.5.5"
+    "@supabase/supabase-js": "2.45.4",
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zustand": "4.5.5"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.5"
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.66",
+    "@types/react-dom": "18.2.22",
+    "autoprefixer": "10.4.17",
+    "postcss": "8.4.35",
+    "prettier": "3.2.5",
+    "tailwindcss": "3.4.3",
+    "typescript": "5.4.5"
   }
 }
