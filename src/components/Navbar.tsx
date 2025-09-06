@@ -36,6 +36,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link className="hover:underline" href="/dashboard">Dashboard</Link>
             <Link className="hover:underline" href="/dashboard/agenda">Agenda</Link>
+            <Link className="hover:underline" href="/dashboard/pacientes">Pacientes</Link>
             <Link className="hover:underline" href="/dashboard/especialidades">Especialidades</Link>
             <button className="btn" onClick={signOut}>Salir</button>
           </div>
