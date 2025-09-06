@@ -13,7 +13,7 @@ export default function Navbar() {
       setLogged(!!s),
     );
     return () => {
-      sub.subscription.unsubscribe();
+      sub?.subscription.unsubscribe();
     };
   }, []);
 
