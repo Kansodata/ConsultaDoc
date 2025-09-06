@@ -1,24 +1,28 @@
-"use client";
+'use client'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+// import type { Database } from '@/types/supabase' // si generaste tipos
 
-import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+const url  = process.env.NEXT_PUBLIC_SUPABASE_URL
+const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+if (!url || !anon) {
+  throw new Error('Faltan NEXT_PUBLIC_SUPABASE_URL o NEXT_PUBLIC_SUPABASE_ANON_KEY')
+}
+
+// Singleton para evitar múltiples instancias en HMR
 const globalForSupabase = globalThis as unknown as {
-  supabaseBrowser: SupabaseClient | undefined;
-};
+  supabaseBrowser?: SupabaseClient // SupabaseClient<Database> si usas tipos
+}
 
-export const supabaseBrowser =
-  globalForSupabase.supabaseBrowser ??
-  createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
+export function supabaseBrowser(): SupabaseClient { // <- ahora es FUNCIÓN
+  if (!globalForSupabase.supabaseBrowser) {
+    globalForSupabase.supabaseBrowser = createClient(/*<Database>*/ url, anon, {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true,
       },
-    },
-  );
-
-if (process.env.NODE_ENV !== "production")
-  globalForSupabase.supabaseBrowser = supabaseBrowser;
+    })
+  }
+  return globalForSupabase.supabaseBrowser
+}
