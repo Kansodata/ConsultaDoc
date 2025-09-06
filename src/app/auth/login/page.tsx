@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { useRouter } from "next/navigation";
+import Input from "@/components/ui/Input";
 
 export default function LoginPage() {
   const supabase = supabaseBrowser;
@@ -28,16 +29,14 @@ export default function LoginPage() {
     <div className="max-w-md mx-auto card p-6">
       <h2 className="text-2xl font-semibold">Iniciar sesión</h2>
       <form className="mt-4 space-y-3" onSubmit={onSubmit}>
-        <input
-          className="input"
+        <Input
           placeholder="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <input
-          className="input"
+        <Input
           placeholder="Contraseña"
           type="password"
           value={password}
