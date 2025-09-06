@@ -1,4 +1,8 @@
+import React, { InputHTMLAttributes } from 'react'
 import { cn } from './utils'
-export default function Input({ className, ...props }: any){
-return <input className={cn('input', className)} {...props} />
+
+type InputProps = InputHTMLAttributes<HTMLInputElement>
+
+export default function Input({ className, ...props }: InputProps) {
+  return <input className={cn('input', className)} {...props} />
 }
