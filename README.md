@@ -28,6 +28,16 @@ ConsultaDoc es un SaaS para la gestión integral de consultas médicas. Permite 
 - `dev`: entorno local
 - `build` / `start`: producción
 
+## Testing
+
+Actualmente no hay pruebas automatizadas.
+
+Para añadirlas en el futuro:
+
+1. Instala dependencias de testing: `npm install --save-dev jest @testing-library/react @testing-library/jest-dom`.
+2. Agrega el script `"test": "jest"` en `package.json`.
+3. Crea archivos de prueba en `__tests__/` o junto a los componentes.
+
 ## Seguridad
 
 - RLS activo en todas las tablas.
