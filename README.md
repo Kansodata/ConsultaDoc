@@ -9,6 +9,13 @@ ConsultaDoc es un SaaS para la gestión integral de consultas médicas. Permite 
 - Autenticación y control de acceso
 - Integración con Supabase para almacenamiento y datos en tiempo real
 
+## Requisitos
+
+- Node.js 18.x y npm 9
+  - Instala y usa nvm: `nvm install 18 && nvm use 18`
+- Supabase CLI
+  - Instala globalmente: `npm install -g supabase`
+
 ## Setup rápido
 
 1. Copia `.env.local` desde `.env.local.example`.
