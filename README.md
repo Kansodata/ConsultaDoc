@@ -2,6 +2,13 @@
 
 SaaS para gestión de consultas médicas. Stack: Next.js + Supabase.
 
+## Requisitos
+
+- Node.js 18.x y npm 9
+  - Instala y usa nvm: `nvm install 18 && nvm use 18`
+- Supabase CLI
+  - Instala globalmente: `npm install -g supabase`
+
 ## Setup rápido
 
 1. Copia `.env.local` desde `.env.local.example`.
